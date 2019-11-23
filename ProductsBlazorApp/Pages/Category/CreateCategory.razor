@@ -1,0 +1,26 @@
+﻿@page "/Category/Add"
+
+@inject CategoryService Service
+
+<h3>Add New Category</h3>
+<EditForm Model="category" OnValidSubmit="AddCategory">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label for="name">Name</label>
+        <InputText id="name" @bind-Value="category.Name" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Add Category</button>
+    <a href="Category/List" class="btn btn-info" role="button">Cancel</a>
+</EditForm>
+
+@code {
+    Category category = new Category();
+
+    private void AddCategory()
+    {
+        Service.AddCategory(category);
+        category = new Category();
+    }
+}

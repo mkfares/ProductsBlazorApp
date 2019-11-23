@@ -1,0 +1,33 @@
+﻿@page "/Category/Details/{Id:int}"
+
+@inject CategoryService Service
+
+<h3>Category Details</h3>
+
+<table>
+    <tr>
+        <td>Category Id: </td>
+        <td>@category.CategoryId</td>
+    </tr>
+    <tr>
+        <td>Name: </td>
+        <td>@category.Name</td>
+    </tr>
+</table>
+
+<br />
+<a href="/Category/List" class="btn btn-info" role="button">Cancel</a>
+
+@code {
+
+    Category category = new Category();
+
+    [Parameter]
+    public int Id { get; set; }
+
+    protected override void OnInitialized()
+    {
+        category = Service.GetCategory(Id);
+    }
+}
+

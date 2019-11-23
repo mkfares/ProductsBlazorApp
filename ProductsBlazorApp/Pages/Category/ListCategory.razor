@@ -1,0 +1,42 @@
+﻿@page "/Category/List"
+
+@inject CategoryService Service
+
+<h1>Categories</h1>
+
+<a href="Category/Add">Add New category</a>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Category Id</th>
+            <th>Category Name</th>
+            <th>Tasks</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in categories)
+        {
+            <tr>
+                <td>@item.CategoryId</td>
+                <td>@item.Name</td>
+                <td>
+                    <a href="Category/Details/@item.CategoryId">Details</a> |
+                    <a href="Category/Update/@item.CategoryId">Update</a> |
+                    <a href="Category/Delete/@item.CategoryId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+
+    List<Category> categories = new List<Category>();
+
+    protected override void OnInitialized()
+    {
+        categories = Service.GetCategories();
+    }
+}
+
