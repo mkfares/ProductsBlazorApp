@@ -10,6 +10,8 @@
     Add New Product
 </a>
 
+<div class="mt-2"></div>
+
 <table class="table table-hover">
     <thead>
         <tr>
@@ -35,7 +37,7 @@
                 <td>@item.OrderDate?.ToString("dd-MM-yyyy")</td>
                 <td>@item.Color</td>
                 <td>@item.IsChecked</td>
-                <td>@item.CategoryId</td>
+                <td>@item.Category.Name</td>
                 <td>
                     <a href="Product/Details/@item.ProductId"><span class="oi oi-list"></span></a> &nbsp;
                     <a href="Product/Update/@item.ProductId"><span class="oi oi-pencil"></span></a> &nbsp;

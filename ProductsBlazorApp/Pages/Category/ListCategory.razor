@@ -5,15 +5,16 @@
 <h1>Categories</h1>
 
 <a href="Category/Add" class="btn btn-primary">
-    <span class="oi oi-plus"></span>
+    <span class="oi oi-plus"></span> &nbsp;
  Add New category</a>
 
+<div class="mt-2"></div>
 
 <table class="table table-hover">
     <thead>
         <tr>
-            <th>Category Id</th>
-            <th>Category Name</th>
+            <th>Id</th>
+            <th>Name</th>
             <th>Tasks</th>
         </tr>
     </thead>
@@ -24,9 +25,9 @@
                 <td>@item.CategoryId</td>
                 <td>@item.Name</td>
                 <td>
-                    <a href="Category/Details/@item.CategoryId">Details</a> |
-                    <a href="Category/Update/@item.CategoryId">Update</a> |
-                    <a href="Category/Delete/@item.CategoryId">Delete</a>
+                    <a href="Category/Details/@item.CategoryId"><span class="oi oi-list"></span></a> &nbsp;
+                    <a href="Category/Update/@item.CategoryId"><span class="oi oi-pencil"></span></a> &nbsp;
+                    <a href="Category/Delete/@item.CategoryId"><span class="oi oi-trash"></span></a>
                 </td>
             </tr>
         }
