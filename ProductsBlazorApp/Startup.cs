@@ -39,7 +39,7 @@ namespace ProductsBlazorApp
             // Add services to retrieve data from the database
             // Services using Dbcontext has has to be scoped not singleton
             services.AddScoped<CategoryService>();
-            //services.AddSingleton<ProductService>();
+            services.AddScoped<ProductService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

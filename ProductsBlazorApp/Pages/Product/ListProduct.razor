@@ -1,0 +1,65 @@
+﻿@page "/Product/List"
+
+@inject ProductService ProdService
+@inject CategoryService CatService
+
+<h1>Products</h1>
+
+<a href="Product/Add" class="btn btn-primary">
+    <span class="oi oi-plus"></span>
+    Add New Product
+</a>
+
+@if (products == null)
+{
+    <p>Loading data ...</p>
+}
+else
+{
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Order Date</th>
+                <th>Color</th>
+                <th>Is Checked</th>
+                <th>Category</th>
+                <th>Tasks</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in products)
+            {
+                <tr>
+                    <td>@item.ProductId</td>
+                    <td>@item.Name</td>
+                    <td>@item.Price</td>
+                    <td>@item.Quantity</td>
+                    <td>@item.OrderDate?.ToString("dd-MM-yyyy")</td>
+                    <td>@item.Color</td>
+                    <td>@item.IsChecked</td>
+                    <td>@item.CategoryId</td>
+                    <td>
+                        <a href="Product/Details/@item.ProductId"><span class="oi oi-list"></span></a> &nbsp;
+                        <a href="Product/Update/@item.ProductId"><span class="oi oi-pencil"></span></a> &nbsp;
+                        <a href="Product/Delete/@item.ProductId"><span class="oi oi-trash"></span></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+@code {
+
+    List<Product> products = new List<Product>();
+
+    //List<Category> categories = new List<Category>();
+
+    protected override void OnInitialized()
+    {
+        products = ProdService.GetProducts();
+    }
+}

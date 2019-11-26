@@ -9,18 +9,30 @@ namespace ProductsBlazorApp.Data
     {
         [Key]
         public int ProductId { get; set; }
+
         [Required]
         public string Name { get; set; }
+
         [Column(TypeName = "decimal(10, 2)")]
         public decimal Price { get; set; }
+
         public int? Quantity { get; set; }
+
         public DateTime? OrderDate { get; set; }
-        public int? Color { get; set; }
+
+        public Color? Color { get; set; }
+
         public bool? IsChecked { get; set; }
+
         public int? CategoryId { get; set; }
 
         [ForeignKey(nameof(CategoryId))]
         [InverseProperty("Product")]
         public virtual Category Category { get; set; }
     }
+}
+
+public enum Color
+{
+    Red = 1, Green, Blue
 }
