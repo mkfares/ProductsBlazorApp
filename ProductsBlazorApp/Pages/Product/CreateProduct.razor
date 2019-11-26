@@ -29,7 +29,7 @@
         <InputDate id="orderdate" @bind-Value="product.OrderDate" @bind-Value:format="yyyy-MM-dd" class="form-control" />
     </div>
 
-    @* InputSelect does not work - have to check it *@
+    @* Replace InputSelect with select, since it does not work - check it *@
     <div class="form-group">
         <label for="color">Color</label>
         <select @bind="product.Color" id="color" class="form-control">
@@ -66,6 +66,7 @@
 @code {
     Product product = new Product();
 
+    // Needed for the category dropdown list 
     private List<Category> categories = new List<Category>();
 
     // Added because Inputcheckbox does not accept nullable variables
@@ -74,7 +75,7 @@
     // Check why product.categoryId does not bind
     private string categoryId = String.Empty;
 
-    // Execute when page load for the first time
+    // Execute when component starts / initializes
     protected override void OnInitialized()
     {
         categories = CatService.GetCategories();
@@ -85,6 +86,7 @@
         // Update the product properties
         product.IsChecked = isChecked;
 
+        // Convert categoryId from string to int
         if(!String.IsNullOrEmpty(categoryId))
         {
             product.CategoryId = Int32.Parse(categoryId);
@@ -92,6 +94,7 @@
         
         ProdService.AddProduct(product);
 
+        // To empty the form, find more elegant why
         product = new Product();
 
         // May navigate to the Product/List component 

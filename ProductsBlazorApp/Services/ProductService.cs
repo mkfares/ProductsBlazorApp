@@ -23,6 +23,9 @@ namespace ProductsBlazorApp.Services
         /// <returns>List of all products</returns>
         public List<Product> GetProducts()
         {
+            // Load the categories
+            Include(nameof(db.Category));
+
             return db.Product.ToList();
         }
 
@@ -78,6 +81,15 @@ namespace ProductsBlazorApp.Services
             // Change the state of the product object to modified, so it will be update in database
             db.Entry(product).State = EntityState.Modified;
             db.SaveChanges();
+        }
+
+        /// <summary>
+        /// Load related navigational properties (eager loading)
+        /// </summary>
+        /// <param name="property">The navigational property to load</param>
+        public void Include(string property)
+        {
+            var products = db.Product.Include(property);
         }
     }
 }
