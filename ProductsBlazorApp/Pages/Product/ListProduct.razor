@@ -14,7 +14,10 @@
 
 @if (products == null)
 {
-    <p>Loading data ...</p>
+    <div class="d-flex align-items-center">
+        <strong>Loading data ...</strong>
+        <div class="spinner-border ml-auto"></div>
+    </div>
 }
 else
 {
@@ -58,7 +61,8 @@ else
 @code {
 
     // Create a list of products to be displayed in the component
-    List<Product> products = new List<Product>();
+    //List<Product> products = new List<Product>();
+    List<Product> products;
 
     protected override void OnInitialized()
     {

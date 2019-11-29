@@ -13,7 +13,10 @@
 
 @if (categories == null)
 {
-    <p>Loding data ...</p>
+    <div class="d-flex align-items-center">
+        <strong>Loading data ...</strong>
+        <div class="spinner-border ml-auto"></div>
+    </div>
 }
 else
 {
@@ -44,9 +47,10 @@ else
 
 @code {
     // Create a list of categories to display in the component
-    List<Category> categories = new List<Category>();
+    //List<Category> categories = new List<Category>();
+    List<Category> categories;
 
-    // Load the list when the component initilizes 
+    // Load the list when the component initilizes
     protected override void OnInitialized()
     {
         // Get the categories from the service

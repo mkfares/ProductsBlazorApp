@@ -1,0 +1,55 @@
+﻿@page "/Product/Details/{Id:int}"
+
+@inject ProductService Service
+
+<h3>Product Details</h3>
+
+<table class="table table-hover">
+    <tr>
+        <td>Product Id: </td>
+        <td>@product.CategoryId</td>
+    </tr>
+    <tr>
+        <td>Name: </td>
+        <td>@product.Name</td>
+    </tr>
+    <tr>
+        <td>Price: </td>
+        <td>@product.Price</td>
+    </tr>
+    <tr>
+        <td>Quantity: </td>
+        <td>@product.Quantity</td>
+    </tr>
+    <tr>
+        <td>Order Date: </td>
+        <td>@product.OrderDate?.ToString("dd-MM-yyyy")</td>
+    </tr>
+    <tr>
+        <td>Color: </td>
+        <td>@product.Color</td>
+    </tr>
+    <tr>
+        <td>Is Checked: </td>
+        <td>@product.IsChecked</td>
+    </tr>
+    <tr>
+        <td>Category: </td>
+        <td>@product.Category.Name</td>
+    </tr>
+</table>
+
+<a href="/Product/List" class="btn btn-info" role="button">Cancel</a>
+
+@code {
+
+    Product product = new Product();
+
+    [Parameter]
+    public int Id { get; set; }
+
+    protected override void OnInitialized()
+    {
+        product = Service.GetProduct(Id);
+    }
+}
