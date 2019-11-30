@@ -1,7 +1,6 @@
 ﻿@page "/Product/List"
 
-@inject ProductService ProdService
-@inject CategoryService CatService
+@inject ProductService Service
 
 <h1>Products</h1>
 
@@ -61,12 +60,11 @@ else
 @code {
 
     // Create a list of products to be displayed in the component
-    //List<Product> products = new List<Product>();
-    List<Product> products;
+    private List<Product> products;
 
     protected override void OnInitialized()
     {
         // Get the products from the service
-        products = ProdService.GetProducts();
+        products = Service.GetProducts();
     }
 }
