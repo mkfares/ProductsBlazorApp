@@ -23,6 +23,13 @@ CREATE TABLE Product(
 );
 GO
 
+CREATE TABLE Customer (
+    CustomerId INT  IDENTITY (1, 1) NOT NULL,
+    Email			NVARCHAR (MAX) NOT NULL,
+    [Password]		NVARCHAR (MAX) NOT NULL,
+    CONSTRAINT [PK_Customer] PRIMARY KEY CLUSTERED ([CustomerId] ASC)
+);
+
 INSERT INTO Category VALUES 
 ('Fruit'), 
 ('Vegetable'),
@@ -37,4 +44,9 @@ INSERT INTO Product VALUES
 ('Lettuce',	9.00, 100,	'2019-11-2', 3,	1, 2),
 ('Tomato',	5.00,  50,	'2019-11-8', 3, 0, 2),
 ('Potato',	2.00, 200,	'2019-11-9', 1, 1, 2);
+GO
+
+INSERT INTO Customer VALUES
+('abc@gmail.com','Passwd0'),
+('def@yahoo.com','Passwd1');
 GO

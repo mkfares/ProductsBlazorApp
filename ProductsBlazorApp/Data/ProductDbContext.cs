@@ -15,9 +15,14 @@ namespace ProductsBlazorApp.Data
         {
         }
 
+        // Data sets equivalent to tables in the database
         public virtual DbSet<Category> Category { get; set; }
+        
         public virtual DbSet<Product> Product { get; set; }
+       
+        public virtual DbSet<Customer> Customer { get; set; }
 
+        // Comment this method, the connection string is set in the appsettings.json and Startup.cs files
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{
         //    if (!optionsBuilder.IsConfigured)
@@ -26,6 +31,7 @@ namespace ProductsBlazorApp.Data
         //    }
         //}
 
+        // Model building
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Product>(entity =>

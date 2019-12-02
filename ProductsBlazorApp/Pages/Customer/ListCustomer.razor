@@ -1,0 +1,57 @@
+﻿@page "/Customer/List"
+
+@inject CustomerService Service
+
+<h1>Customers</h1>
+
+<a href="Customer/Add">
+    <span class="oi oi-plus"></span> &nbsp;
+    Add New Customer
+</a>
+
+<div class="mt-2"></div>
+
+@if (customers == null)
+{
+    <div class="d-flex align-items-center">
+        <strong>Loading data ...</strong>
+        <div class="spinner-border ml-auto"></div>
+    </div>
+}
+else
+{
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Tasks</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in customers)
+            {
+            <tr>
+                <td>@item.CustomerId</td>
+                <td>@item.Email</td>
+                <td>@item.Password</td>
+                <td>
+                    <a href="Customer/Details/@item.CustomerId"><span class="oi oi-list"></span></a> &nbsp;
+                    <a href="Customer/Update/@item.CustomerId"><span class="oi oi-pencil"></span></a> &nbsp;
+                    <a href="Customer/Delete/@item.CustomerId"><span class="oi oi-trash"></span></a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    List<Customer> customers;
+
+    protected override void OnInitialized()
+    {
+        customers = Service.GetCustomers();
+    }
+}

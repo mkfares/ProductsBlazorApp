@@ -40,6 +40,7 @@ namespace ProductsBlazorApp
             // Services using Dbcontext has has to be scoped not singleton
             services.AddScoped<CategoryService>();
             services.AddScoped<ProductService>();
+            services.AddScoped<CustomerService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

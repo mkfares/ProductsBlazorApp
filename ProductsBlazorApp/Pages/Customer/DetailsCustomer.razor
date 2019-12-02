@@ -1,0 +1,36 @@
+﻿@page "/Customer/Details/{Id:int}"
+
+@inject CustomerService Service
+
+<h3>Customer Details</h3>
+
+<table class="table table-hover">
+    <tr>
+        <td>Customer Id: </td>
+        <td>@customer.CustomerId</td>
+    </tr>
+    <tr>
+        <td>Email: </td>
+        <td>@customer.Email</td>
+    </tr>
+    <tr>
+        <td>Password: </td>
+        <td>@customer.Password</td>
+    </tr>
+</table>
+
+<br />
+<a href="/Customer/List" class="btn btn-info" role="button">Cancel</a>
+
+@code {
+
+    Customer customer = new Customer();
+
+    [Parameter]
+    public int Id { get; set; }
+
+    protected override void OnInitialized()
+    {
+        customer = Service.GetCustomer(Id);
+    }
+}
