@@ -10,7 +10,7 @@
     <div class="form-group">
         <label for="email">Email</label>
         <InputText type="email" id="email" @bind-Value="customer.Email" class="form-control" />
-        <ValidationMessage For="@(() => customer.Email)"/>
+        <ValidationMessage For="@(() => customer.Email)" />
     </div>
 
     <div class="form-group">
@@ -20,7 +20,7 @@
     </div>
 
     <button type="submit" class="btn btn-primary">Add Customer</button>
-    <a href="Category/List" class="btn btn-info" role="button">Cancel</a>
+    <a href="Customer/List" class="btn btn-info" role="button">Cancel</a>
 
 </EditForm>
 
