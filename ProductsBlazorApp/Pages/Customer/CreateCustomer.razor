@@ -1,15 +1,23 @@
 ﻿@page "/Customer/Add"
 
 @inject CustomerService Service
+@using ProductsBlazorApp.Components
 
 <h3>Add New Customer</h3>
 <EditForm Model="customer" OnValidSubmit="AddCustomer">
     <DataAnnotationsValidator />
     @*<ValidationSummary />*@
 
+    @*<div class="form-group">
+            <label for="email">Email</label>
+            <InputText type="email" id="email" @bind-Value="customer.Email" class="form-control" />
+            <ValidationMessage For="@(() => customer.Email)" />
+        </div>*@
+
+    @* Need to add using namespace above *@
     <div class="form-group">
         <label for="email">Email</label>
-        <InputText type="email" id="email" @bind-Value="customer.Email" class="form-control" />
+        <InputEmail type="email" id="email" @bind-Value="customer.Email" class="form-control" />
         <ValidationMessage For="@(() => customer.Email)" />
     </div>
 
@@ -19,6 +27,26 @@
         <ValidationMessage For="@(() => customer.Password)" />
     </div>
 
+    @* Example of radio button *@
+    @* TODO: use loop over the enum items - make it a component *@
+    
+    <label class="mr-2">Gender: </label>
+
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" id="female" name="gender" value="Female" @onchange="SelectGender" checked />
+        <label class="form-check-label" for="female" >
+            Female
+        </label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" id="male" name="gender" value="Male" @onchange="SelectGender" />
+        <label class="form-check-label" for="male">
+            Male
+        </label>
+    </div>
+
+    <div class="my-2"></div>
+
     <button type="submit" class="btn btn-primary">Add Customer</button>
     <a href="Customer/List" class="btn btn-info" role="button">Cancel</a>
 
@@ -27,8 +55,19 @@
 @code {
     Customer customer = new Customer();
 
+    // Used to handle customer gender using radio buttons
+    Gender gender = Gender.Female;
+
+    void SelectGender(ChangeEventArgs args)
+    {
+        Enum.TryParse(args.Value.ToString(), out gender);
+    }
+
     private void AddCustomer()
     {
+        // Update the customer gender
+        customer.Gender = gender;
+
         Service.AddCustomer(customer);
 
         customer = new Customer();

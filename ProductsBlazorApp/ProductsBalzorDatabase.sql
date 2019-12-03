@@ -27,6 +27,7 @@ CREATE TABLE Customer (
     CustomerId INT  IDENTITY (1, 1) NOT NULL,
     Email			NVARCHAR (MAX) NOT NULL,
     [Password]		NVARCHAR (MAX) NOT NULL,
+	[Gender] INT NOT NULL,
     CONSTRAINT [PK_Customer] PRIMARY KEY CLUSTERED ([CustomerId] ASC)
 );
 
@@ -47,6 +48,6 @@ INSERT INTO Product VALUES
 GO
 
 INSERT INTO Customer VALUES
-('abc@gmail.com','Passwd0'),
-('def@yahoo.com','Passwd1');
+('abc@gmail.com','Passwd0', 1),
+('def@yahoo.com','Passwd1', 2);
 GO

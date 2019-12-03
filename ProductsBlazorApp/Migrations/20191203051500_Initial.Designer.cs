@@ -10,8 +10,8 @@ using ProductsBlazorApp.Data;
 namespace ProductsBlazorApp.Migrations
 {
     [DbContext(typeof(ProductDbContext))]
-    [Migration("20191202151800_AddedCustomer")]
-    partial class AddedCustomer
+    [Migration("20191203051500_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -47,6 +47,9 @@ namespace ProductsBlazorApp.Migrations
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Gender")
+                        .HasColumnType("int");
 
                     b.Property<string>("Password")
                         .IsRequired()
