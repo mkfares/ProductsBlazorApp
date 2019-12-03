@@ -8,6 +8,7 @@
     <DataAnnotationsValidator />
     @*<ValidationSummary />*@
 
+    @*when using InputText for emails, add [EmailAddress(ErrorMessage="Invalid email")] in the entity*@
     @*<div class="form-group">
             <label for="email">Email</label>
             <InputText type="email" id="email" @bind-Value="customer.Email" class="form-control" />
@@ -17,7 +18,7 @@
     @* Need to add using namespace above *@
     <div class="form-group">
         <label for="email">Email</label>
-        <InputEmail type="email" id="email" @bind-Value="customer.Email" class="form-control" />
+        <InputEmail type="email" id="email" @bind-Value="customer.Email" class="form-control" placeholder="sam@example.com" />
         <ValidationMessage For="@(() => customer.Email)" />
     </div>
 

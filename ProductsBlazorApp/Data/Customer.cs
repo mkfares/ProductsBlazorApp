@@ -11,6 +11,7 @@ namespace ProductsBlazorApp.Data
         public int CustomerId { get; set; }
 
         [Required]
+        //[EmailAddress(ErrorMessage ="Invalid email address")]
         public string Email { get; set; }
 
         [Required]

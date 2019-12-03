@@ -1,9 +1,12 @@
 ﻿using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.AspNetCore.Components;
+using System.Text.RegularExpressions;
 
 namespace ProductsBlazorApp.Components
 {
+    // checks the email with regular expression in the form sam@example.com
+    // [EmailAddress] checks only the existance of the @ symbol in the string
     public class InputEmail : InputBase<string>
     {
         [Parameter] public string ParsingErrorMessage { get; set; } = "The {0} field must be an email.";
@@ -20,7 +23,7 @@ namespace ProductsBlazorApp.Components
 
         protected override bool TryParseValueFromString(string value, out string result, out string validationErrorMessage)
         {
-            if (value.Contains('@'))
+            if (value == null || IsEmailValid(value))
             {
                 validationErrorMessage = null;
                 result = value;
@@ -29,14 +32,15 @@ namespace ProductsBlazorApp.Components
             else
             {
                 validationErrorMessage = string.Format(ParsingErrorMessage, FieldIdentifier.FieldName);
-                result = default;
+                result = value;
                 return false;
             }
         }
 
-        protected override string FormatValueAsString(string value)
+        // Check whether email is valid using regular expressions
+        bool IsEmailValid(string email)
         {
-            return value;
+            return Regex.IsMatch(email, @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$");
         }
     }
 }
